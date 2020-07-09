@@ -61,7 +61,7 @@
   ''' <param name="bRaiseErrorOnEmpty">Raise error on empty value</param>
   ''' <returns>Double value</returns>
   ''' <remarks>Created KT 2020-07-09</remarks>
-  Private Shared Function ParseDouble(ByVal oValue As Object, Optional sDecimalSeparator As String = "A", Optional bRaiseErrorOnEmpty As Boolean = False) As Double
+  Public Shared Function ParseDouble(ByVal oValue As Object, Optional sDecimalSeparator As String = "A", Optional bRaiseErrorOnEmpty As Boolean = False) As Double
     Dim dblResult As Double = Nothing
     Dim sDoubleAsString As String = oValue
     Dim oDoubleAsCharList As IEnumerable(Of Char)
@@ -172,8 +172,8 @@
   ''' <param name="sInputText">Input string</param>
   ''' <returns>Corrected string</returns>
   ''' <remarks>Created KT 2020-07-09</remarks>
-  Private Shared Function RemoveNonNumberDigitsAndCharacters(ByVal sInputText As String) As String
-    Dim oNumericChars = "0123456789,.-+e".ToCharArray()
+  Public Shared Function RemoveNonNumberDigitsAndCharacters(ByVal sInputText As String) As String
+    Dim oNumericChars As Char() = "0123456789,.-+e".ToCharArray()
     Return New String(sInputText.Where(Function(c) oNumericChars.Any(Function(n) n = c)).ToArray())
   End Function
 
@@ -183,8 +183,8 @@
   ''' <param name="sInputText">Input string</param>
   ''' <returns>True, input value contains at least one number</returns>
   ''' <remarks>Created KT 2020-07-09</remarks>
-  Private Shared Function HasNumbers(ByVal sInputText As String) As Boolean
-    Dim oNumericChars = "0123456789".ToCharArray()
+  Public Shared Function HasNumbers(ByVal sInputText As String) As Boolean
+    Dim oNumericChars As Char() = "0123456789".ToCharArray()
     Return New String(sInputText.Where(Function(c) oNumericChars.Any(Function(n) n = c)).ToArray()).Length > 0
   End Function
 
