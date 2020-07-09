@@ -7,7 +7,6 @@
   Private Sub frmMainForm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
     txtInputString.SelectionStart = 0
     txtInputString.SelectionLength = 0
-
   End Sub
 
   Private Sub cmdConvert_Click(sender As Object, e As EventArgs) Handles cmdConvert.Click
