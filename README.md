@@ -7,10 +7,10 @@ Allows to convert any String into a double value.
 Parameters:
 - Value
 - DecimalSeparator
-  A = Automatic
-  R = Use local Regional Settings
-  , = Use komma
-  - = Use dot
+  - A = Automatic
+  - R = Use local Regional Settings
+  - , = Use komma
+  - . = Use dot
 - RaiseErrorOnEmpty
   True, error
   False, converted to 0
