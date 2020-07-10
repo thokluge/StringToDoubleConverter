@@ -1,4 +1,6 @@
-﻿Public Class frmMainForm
+﻿Imports System.Globalization
+
+Public Class frmMainForm
   Private Sub frmMainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
 
@@ -26,6 +28,7 @@
 
     '*** Check Nothing working
     sLine = Nothing
+
     Try
       dblResult = ParseDouble(sLine, sDecimalSep, chkErrorOnEmpty.Checked)
       sResult = String.Format("{0:0.00000}", dblResult)
@@ -33,6 +36,7 @@
       sResult = ex.Message
     End Try
     txtOutputString.Text += String.Format("{0,14} ==> {1,17}", "Nothing", sResult) + vbCrLf
+
 
     '*** Loop input values
     For Each sLine In txtInputString.Lines
@@ -42,6 +46,39 @@
       Catch ex As Exception
         sResult = ex.Message
       End Try
+
+      txtOutputString.Text += String.Format("{0,14} ==> {1,17}", sLine, sResult) + vbCrLf
+    Next
+  End Sub
+
+  Private Sub cmdConvert2_Click(sender As Object, e As EventArgs) Handles cmdConvert2.Click
+    Dim dblResult As Decimal
+    Dim sResult As String = String.Empty
+    Dim sDecimalSep As String = String.Empty, sLine As String
+
+    If cboDecimalSeparator.SelectedIndex = 0 Then
+      sDecimalSep = ""
+    ElseIf cboDecimalSeparator.SelectedIndex = 1 Then
+      sDecimalSep = ""
+    ElseIf cboDecimalSeparator.SelectedIndex > 1 Then
+      sDecimalSep = cboDecimalSeparator.Text
+    End If
+
+    txtOutputString.Text = String.Empty
+
+    '*** Check Nothing working
+    If IsNumeric(Nothing, sDecimalSep, dblResult, sResult, chkErrorOnEmpty.Checked) Then
+      sResult = String.Format("{0:0.00000}", dblResult)
+    End If
+    txtOutputString.Text += String.Format("{0,14} ==> {1,17}", "Nothing", sResult) + vbCrLf
+
+
+    '*** Loop input values
+    For Each sLine In txtInputString.Lines
+
+      If IsNumeric(sLine, sDecimalSep, dblResult, sResult, chkErrorOnEmpty.Checked) Then
+        sResult = String.Format("{0:0.00000}", dblResult)
+      End If
 
       txtOutputString.Text += String.Format("{0,14} ==> {1,17}", sLine, sResult) + vbCrLf
     Next
@@ -167,13 +204,40 @@
   End Function
 
   ''' <summary>
+  ''' Check if the given value is numeric using ParseDouble()
+  ''' </summary>
+  ''' <param name="sValue">Input text</param>
+  ''' <param name="sDecimalSeparator">Use given Decimal Separator
+  '''                                 'A' or Empty ==> Automatic determination
+  '''                                 'R'          ==> Use Regional Settings
+  '''                                 ','          ==> Use komma as decimal separator
+  '''                                 '.'          ==> Use dot as decimal separator</param>
+  ''' <param name="dReturnValue">Converted double value</param>
+  ''' <param name="sReturnError">Convertion error</param>
+  ''' <param name="bRaiseErrorOnEmpty">Raise error on empty value</param>
+  ''' <returns>True, if input text is double vlaue</returns>
+  ''' <remarks>Created KT 2020-07-09</remarks>
+  Public Function IsNumeric(sValue As String, sDecimalSeparator As String, ByRef dReturnValue As Double, ByRef sReturnError As String, bRaiseErrorOnEmpty As Boolean) As Boolean
+
+    Try
+      sReturnError = String.Empty
+      dReturnValue = 0.0
+      dReturnValue = ParseDouble(sValue, sDecimalSeparator, bRaiseErrorOnEmpty)
+      Return True
+    Catch ex As Exception
+      sReturnError = ex.Message
+      Return False
+    End Try
+  End Function
+
+  ''' <summary>
   ''' Remove none numeric characters for parsing input string
   ''' </summary>
   ''' <param name="sInputText">Input string</param>
   ''' <returns>Corrected string</returns>
   ''' <remarks>Created KT 2020-07-09</remarks>
   Public Shared Function RemoveNonNumberDigitsAndCharacters(ByVal sInputText As String) As String
-    Dim oNumericChars As Char() = "0123456789,.-+e".ToCharArray()
+    Dim oNumericChars As Char() = "0123456789,.-+eE".ToCharArray()
     Return New String(sInputText.Where(Function(c) oNumericChars.Any(Function(n) n = c)).ToArray())
   End Function
 

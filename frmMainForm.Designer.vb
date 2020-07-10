@@ -31,6 +31,7 @@ Partial Class frmMainForm
     Me.chkErrorOnEmpty = New System.Windows.Forms.CheckBox()
     Me.cboDecimalSeparator = New System.Windows.Forms.ComboBox()
     Me.txtInputString = New System.Windows.Forms.TextBox()
+    Me.cmdConvert2 = New System.Windows.Forms.Button()
     Me.SuspendLayout()
     '
     'txtOutputString
@@ -51,7 +52,7 @@ Partial Class frmMainForm
     '
     Me.Label1.AutoSize = True
     Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label1.Location = New System.Drawing.Point(16, 12)
+    Me.Label1.Location = New System.Drawing.Point(15, 12)
     Me.Label1.Name = "Label1"
     Me.Label1.Size = New System.Drawing.Size(72, 15)
     Me.Label1.TabIndex = 2
@@ -71,7 +72,7 @@ Partial Class frmMainForm
     '
     Me.cmdConvert.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.cmdConvert.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cmdConvert.Location = New System.Drawing.Point(730, 8)
+    Me.cmdConvert.Location = New System.Drawing.Point(642, 8)
     Me.cmdConvert.Name = "cmdConvert"
     Me.cmdConvert.Size = New System.Drawing.Size(75, 24)
     Me.cmdConvert.TabIndex = 4
@@ -82,7 +83,7 @@ Partial Class frmMainForm
     '
     Me.Label3.AutoSize = True
     Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label3.Location = New System.Drawing.Point(105, 12)
+    Me.Label3.Location = New System.Drawing.Point(99, 12)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(113, 15)
     Me.Label3.TabIndex = 6
@@ -92,7 +93,7 @@ Partial Class frmMainForm
     '
     Me.Label4.AutoSize = True
     Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label4.Location = New System.Drawing.Point(308, 12)
+    Me.Label4.Location = New System.Drawing.Point(302, 12)
     Me.Label4.Name = "Label4"
     Me.Label4.Size = New System.Drawing.Size(164, 15)
     Me.Label4.TabIndex = 7
@@ -103,7 +104,7 @@ Partial Class frmMainForm
     Me.chkErrorOnEmpty.AutoSize = True
     Me.chkErrorOnEmpty.Checked = Global.WindowsApp1.My.MySettings.Default.ErrorOnEmpty
     Me.chkErrorOnEmpty.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.WindowsApp1.My.MySettings.Default, "ErrorOnEmpty", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-    Me.chkErrorOnEmpty.Location = New System.Drawing.Point(489, 14)
+    Me.chkErrorOnEmpty.Location = New System.Drawing.Point(479, 14)
     Me.chkErrorOnEmpty.Name = "chkErrorOnEmpty"
     Me.chkErrorOnEmpty.Size = New System.Drawing.Size(149, 17)
     Me.chkErrorOnEmpty.TabIndex = 8
@@ -117,7 +118,7 @@ Partial Class frmMainForm
     Me.cboDecimalSeparator.Font = New System.Drawing.Font("Courier New", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.cboDecimalSeparator.FormattingEnabled = True
     Me.cboDecimalSeparator.Items.AddRange(New Object() {"A", "R", ",", "."})
-    Me.cboDecimalSeparator.Location = New System.Drawing.Point(222, 8)
+    Me.cboDecimalSeparator.Location = New System.Drawing.Point(216, 8)
     Me.cboDecimalSeparator.Name = "cboDecimalSeparator"
     Me.cboDecimalSeparator.Size = New System.Drawing.Size(78, 23)
     Me.cboDecimalSeparator.TabIndex = 5
@@ -138,11 +139,23 @@ Partial Class frmMainForm
     Me.txtInputString.Text = Global.WindowsApp1.My.MySettings.Default.InputString
     Me.txtInputString.WordWrap = False
     '
+    'cmdConvert2
+    '
+    Me.cmdConvert2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.cmdConvert2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cmdConvert2.Location = New System.Drawing.Point(729, 8)
+    Me.cmdConvert2.Name = "cmdConvert2"
+    Me.cmdConvert2.Size = New System.Drawing.Size(75, 24)
+    Me.cmdConvert2.TabIndex = 9
+    Me.cmdConvert2.Text = "Convert 2"
+    Me.cmdConvert2.UseVisualStyleBackColor = True
+    '
     'frmMainForm
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(820, 720)
+    Me.Controls.Add(Me.cmdConvert2)
     Me.Controls.Add(Me.chkErrorOnEmpty)
     Me.Controls.Add(Me.Label4)
     Me.Controls.Add(Me.Label3)
@@ -171,4 +184,5 @@ Partial Class frmMainForm
   Friend WithEvents Label3 As Label
   Friend WithEvents Label4 As Label
   Friend WithEvents chkErrorOnEmpty As CheckBox
+  Friend WithEvents cmdConvert2 As Button
 End Class
